@@ -17,4 +17,5 @@ Link to the task: https://gitlab.forfriday.de/-/snippets/56
 * Sass/SCSS (BEM)
 * Jest + Enzyme
 * Atomic design (architecture pattern)
+* Axios (API requests)
 
