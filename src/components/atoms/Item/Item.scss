@@ -1,0 +1,18 @@
+@import "../../../helpers/styles/colors";
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+
+  &--indicator {
+    margin-right: 20px;
+  }
+
+  &:hover {
+    p {
+      color: $mainOrange;
+    }
+  }
+}
