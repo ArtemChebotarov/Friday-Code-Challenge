@@ -8,7 +8,7 @@ Link to the task: https://gitlab.forfriday.de/-/snippets/56
 2. Via console enter the root folder of project
 3. Run ```yarn install```
 4. Run ```yarn start```
-5. To run unit test run ```yarn run test``` (optional)
+5. To run unit tests run ```yarn run test``` (optional)
 
 ## Technologies in use
 
