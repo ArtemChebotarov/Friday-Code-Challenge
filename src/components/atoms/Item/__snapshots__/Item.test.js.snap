@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item test Test hover effect 1`] = `
+<div
+  className="item"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="item--indicator"
+  >
+    <img
+      alt="indicator"
+      src="orange-empty-dot.svg"
+    />
+  </div>
+  <p
+    className="normal"
+  >
+    Test
+  </p>
+</div>
+`;
+
+exports[`Item test Test hover effect 2`] = `
+<div
+  className="item"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="item--indicator"
+  >
+    <img
+      alt="indicator"
+      src="orange-empty-dot.svg"
+    />
+  </div>
+  <p
+    className="hovered"
+  >
+    Test
+  </p>
+</div>
+`;
+
+exports[`Item test Test hover effect 3`] = `
+<div
+  className="item"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <div
+    className="item--indicator"
+  >
+    <img
+      alt="indicator"
+      src="orange-empty-dot.svg"
+    />
+  </div>
+  <p
+    className="normal"
+  >
+    Test
+  </p>
+</div>
+`;

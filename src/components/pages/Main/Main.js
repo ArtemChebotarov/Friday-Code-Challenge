@@ -15,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { InfoBanner, Item } from "../../atoms";
 import { Flexbox } from "../../templates";
+import { ErrorBoundary } from "../../molecules";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -60,17 +61,6 @@ const Main = () => {
     }
   };
 
-  const getErrorSection = (passFunc) => {
-    return (
-      <div className={"main-page--section--list--error"}>
-        <p>Something went wrong</p>
-        <button onClick={passFunc} type={"button"}>
-          Try again
-        </button>
-      </div>
-    );
-  };
-
   useEffect(() => {
     fetchMakes();
   }, []);
@@ -89,18 +79,27 @@ const Main = () => {
         <h2 className={"main-page--section--title"}>Makes</h2>
 
         <div className={"main-page--section--list"}>
-          {vehicles.makes
-            ? vehicles.makes?.map((make, index) => {
+          {vehicles.makes ? (
+            vehicles.makes.length > 0 ? (
+              vehicles.makes?.map((make, index) => {
                 return (
                   <Item
                     id={index}
                     selected={selectedMake === index}
                     setSelected={setSelectedMake}
-                    content={<p>{make}</p>}
+                    content={make}
+                    key={index}
                   />
                 );
               })
-            : getErrorSection(fetchMakes)}
+            ) : (
+              <div className={"main-page--section--list--empty"}>
+                <p>Nothing to show </p>
+              </div>
+            )
+          ) : (
+            <ErrorBoundary retryFunc={fetchMakes} />
+          )}
         </div>
       </div>
       <div className={"main-page--section"}>
@@ -109,18 +108,25 @@ const Main = () => {
         <div className={"main-page--section--list"}>
           {selectedMake ? (
             vehicles.models ? (
-              vehicles.models.map((model, index) => {
-                return (
-                  <Item
-                    selected={selectedModel === index}
-                    id={index}
-                    setSelected={setSelectedModel}
-                    content={<p>{model}</p>}
-                  />
-                );
-              })
+              vehicles.models.length > 0 ? (
+                vehicles.models.map((model, index) => {
+                  return (
+                    <Item
+                      selected={selectedModel === index}
+                      id={index}
+                      setSelected={setSelectedModel}
+                      content={model}
+                      key={index}
+                    />
+                  );
+                })
+              ) : (
+                <div className={"main-page--section--list--empty"}>
+                  <p>Nothing to show </p>
+                </div>
+              )
             ) : (
-              getErrorSection(fetchModels)
+              <ErrorBoundary retryFunc={fetchModels} />
             )
           ) : (
             <div className={"main-page--section--list--empty"}>
@@ -145,24 +151,27 @@ const Main = () => {
         <div className={"main-page--section--list"}>
           {selectedModel ? (
             vehicles.vehicles ? (
-              vehicles.vehicles.map((vehicle, index) => {
-                return (
-                  <Item
-                    selected={selectedVehicle === index}
-                    setSelected={setSelectedVehicle}
-                    id={index}
-                    content={
-                      <p>
-                        {vehicle.enginePowerPS}/{vehicle.enginePowerKW}/
-                        {vehicle.fuelType}/{vehicle.bodyType}/
-                        {vehicle.engineCapacity}
-                      </p>
-                    }
-                  />
-                );
-              })
+              vehicles.vehicles.length > 0 ? (
+                vehicles.vehicles.map((vehicle, index) => {
+                  return (
+                    <Item
+                      selected={selectedVehicle === index}
+                      setSelected={setSelectedVehicle}
+                      id={index}
+                      content={`${vehicle.enginePowerPS}/${vehicle.enginePowerKW}/
+                          ${vehicle.fuelType}/${vehicle.bodyType}/
+                          ${vehicle.engineCapacity}`}
+                      key={index}
+                    />
+                  );
+                })
+              ) : (
+                <div className={"main-page--section--list--empty"}>
+                  <p>Nothing to show </p>
+                </div>
+              )
             ) : (
-              getErrorSection(fetchVehicles)
+              <ErrorBoundary retryFunc={fetchVehicles} />
             )
           ) : (
             <div className={"main-page--section--list--empty"}>

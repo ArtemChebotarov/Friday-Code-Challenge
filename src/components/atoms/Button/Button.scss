@@ -1,0 +1,14 @@
+@import "../../../helpers/styles/colors";
+
+.button {
+  &__main {
+      width: fit-content;
+      justify-self: center;
+      margin-top: 10px;
+      background-color: #35353C;
+      border-radius: 7px;
+      align-self: center;
+      color: $mainOrange;
+      padding: 5px 10px;
+  }
+}
